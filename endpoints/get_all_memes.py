@@ -10,8 +10,8 @@ class GetAllMemes(Endpoint):
     def get_all_memes(self, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.get(
-          self.url,
-          headers=headers
+            self.url,
+            headers=headers
         )
         self.json = self.response.json()
         return self.response
