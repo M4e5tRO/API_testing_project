@@ -28,7 +28,7 @@ class PutMeme(Endpoint):
     @allure.step('Check the updated description')
     def check_updated_description(self, updated_description):
         assert updated_description in self.json['info']['description'], (f'The "{updated_description}" is NOT added'
-                                                                 f' / is partially added')
+                                                                         f' / is partially added')
 
     @allure.step('Check if new tags are added')
     def check_new_tags(self, expected_tags):

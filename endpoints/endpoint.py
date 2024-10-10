@@ -20,7 +20,8 @@ class Endpoint(Authorization):
     @allure.step('Match the created "id" key with the response data')
     def match_id_key(self, created_id):
         assert 'id' in self.json, 'The "id" key is NOT created'
-        assert int(created_id) == int(self.json['id']), 'The "id" key in the response data is NOT matched with created "id"'
+        assert int(created_id) == int(self.json['id']), ('The "id" key in the response data is NOT matched with created'
+                                                         ' "id"')
 
     @allure.step('Check the "updated_by" key in the response data')
     def check_updated_by_key(self):

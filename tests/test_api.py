@@ -4,13 +4,13 @@ import pytest
 AUTH_DATA = [{"name": "MikeDFG"}]
 
 POST_DATA = [
-{"text": "test_text", "url": "test_url@text.com", "tags": ["TAG1", "TAG2"], "info": {"description": "Test object",
- "policy": "NDA"}}
+    {"text": "test_text", "url": "test_url@text.com", "tags": ["TAG1", "TAG2"], "info": {"description": "Test object",
+     "policy": "NDA"}}
 ]
 
 PUT_DATA = [
-{"text": "test_text_UPD", "url": "test_url_upd@text.com", "tags": ["TAG1", "TAG2","UPD"],"info": {"description":
- "Test object updated", "policy": "NDA UPD", "additional field": 123456789}}
+    {"text": "test_text_UPD", "url": "test_url_upd@text.com", "tags": ["TAG1", "TAG2", "UPD"], "info": {"description":
+     "Test object updated", "policy": "NDA UPD", "additional field": 123456789}}
 ]
 
 

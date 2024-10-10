@@ -8,10 +8,10 @@ class GetMeme(Endpoint):
 
     @allure.step('Read the created meme')
     def get_meme(self, obj_id, headers=None):
-      headers = headers if headers else self.headers
-      self.response = requests.get(
+        headers = headers if headers else self.headers
+        self.response = requests.get(
           f'{self.url}/{obj_id}',
           headers=headers
-      )
-      self.json = self.response.json()
-      return self.response
+        )
+        self.json = self.response.json()
+        return self.response
