@@ -61,8 +61,8 @@ put_object_no_tags = {"id": "", "text": "test_text_UPD", "url": "test_url_upd@te
 put_object_no_info = {"id": "", "text": "test_text_UPD", "url": "test_url_upd@text.com", "tags": ["TAG1", "TAG2",
                       "UPD"]}
 put_add_any_key_value_pair = {"id": "", "country_upd": "Germany_UPD", "text": "test_text_UPD", "url":
-                              "test_url_upd@text.com", "tags": ["TAG1", "TAG2", "UPD"], "info": {"description":
-                              "Test object updated", "policy": "NDA UPD"}}
+                              "test_url_upd@text.com", "tags": ["TAG1", "TAG2", "UPD"], "info":
+                              {"description": "Test object updated", "policy": "NDA UPD"}}
 put_invalid_type_text_is_object = {"id": "", "text": {"key": "value"}, "url": "test_url_upd@text.com", "tags":
                                    ["TAG1", "TAG2", "UPD"], "info": {"description": "Test object updated", "policy":
                                    "NDA UPD"}}
