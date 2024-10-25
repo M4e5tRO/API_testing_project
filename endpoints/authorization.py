@@ -1,45 +1,38 @@
 import requests
+import allure
+
+from .base_endpoint import BaseEndpoint
+from .json_schemas import AuthScheme
+from ..test_data import payloads_list, headers_list
 
 
-class Authorization:
+class Authorization(BaseEndpoint):
 
-    base_url = 'http://167.172.172.115:52355'
-    auth_url = f'{base_url}/authorize'
-    headers = {'Content-Type': 'application/json'}
-    response = None
-    json = None
-    token = None
-
-    def authorize(self, payload, headers=None):
-        headers = headers if headers else self.headers
-
-        if self.is_token_valid():
-            return self.token
+    @allure.step("User's Authorization")
+    def authorize(self, payload=None, headers=None):
+        self.payload = payload if payload else payloads_list.valid_credentials
+        self.headers = headers if headers else headers_list.def_headers
 
         self.response = requests.post(
             self.auth_url,
-            json=payload,
-            headers=headers
+            json=self.payload,
+            headers=self.headers
         )
-        self.token = self.response.json().get('token')
-        return self.token
+        if self.response.status_code == 200:
+            self.json = AuthScheme(**self.response.json())
+            self.token = self.json.token
+            self.user = self.json.user
 
-    def is_token_valid(self, headers=None, token=None):
-        headers = headers if headers else self.headers
-        token = token if token else self.token
+        return self.response
 
-        if not token:
-            return False
+    @allure.step("Check token")
+    def check_token(self):
+        if not self.token:
+            allure.attach('Token Check', 'The "token" is NOT created', allure.attachment_type.TEXT)
+            raise ValueError('The "token" is NOT created')
+        else:
+            allure.attach('Token Check', f'The token is valid: {self.token}', allure.attachment_type.TEXT)
 
-        self.response = requests.get(
-            f'{self.auth_url}/{token}',
-            headers=headers
-        )
-        return self.response.status_code == 200
-
-    def set_auth_header(self, headers=None, token=None):
-        headers = headers if headers else self.headers
-        token = token if token else self.token
-
-        headers["Authorization"] = f"{token}"
-        return self.headers
+    @allure.step("Check name")
+    def check_name(self, name):
+        assert self.user == name, f'The payload: "{name}" does NOT matched with the response: "{self.user}"'
