@@ -21,7 +21,8 @@ class GetAuthToken(BaseEndpoint):
 
     @allure.step('Check the authorization response message')
     def check_auth_response_message(self):
-        assert self.response.text == f'Token is alive. Username is {payloads_list.valid_credentials['name']}', 'Message is incorrect'
+        assert self.response.text == f"Token is alive. Username is {payloads_list.valid_credentials['name']}",\
+                                     'Message is incorrect'
 
     def _check_auth_404_error(self):
         expected_html_title = '<title>404 Not Found</title>'
