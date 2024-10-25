@@ -1,21 +1,40 @@
 import requests
 import allure
 
-from .endpoint import Endpoint
+from .base_endpoint import BaseEndpoint
+from ..test_data import payloads_list, headers_list
+from .json_schemas import PutScheme
 
 
-class PutMeme(Endpoint):
+class PutMeme(BaseEndpoint):
 
     @allure.step('Update the created data')
-    def put_meme(self, obj_id, payload, headers=None):
-        headers = headers if headers else self.headers
+    def put_meme(self, obj_id, payload=None, headers=None):
+        self.payload = payload if payload else payloads_list.put_valid_object
+        self.headers = headers if headers else headers_list.auth_headers
+        self.payload['id'] = obj_id
+
         self.response = requests.put(
             f'{self.url}/{obj_id}',
-            json=payload,
-            headers=headers
+            json=self.payload,
+            headers=self.headers
         )
-        self.json = self.response.json()
+        if self.response.status_code == 200:
+            self.json = PutScheme(**self.response.json())
+            self.id = self.json.id
+            self.description = self.json.info.description
+            self.policy = self.json.info.policy
+            self.tags = self.json.tags
+            self.text = self.json.text
+            self.updated_by = self.json.updated_by
+            self.url = self.json.url
         return self.response
+
+    @allure.step('Match the "id" in the response & payload')
+    def check_id(self, payload_id):
+        resp_id = int(self.id)
+        payload_id = int(payload_id)
+        assert resp_id == payload_id, f'The payload: "{payload_id}" does NOT matched with the response: "{resp_id}"'
 
     @allure.step('Check the updated text')
     def check_updated_text(self, updated_text):

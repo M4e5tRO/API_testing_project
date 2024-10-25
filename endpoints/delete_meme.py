@@ -1,17 +1,19 @@
 import requests
 import allure
 
-from .endpoint import Endpoint
+from .base_endpoint import BaseEndpoint
+from ..test_data import headers_list
 
 
-class DeleteMeme(Endpoint):
+class DeleteMeme(BaseEndpoint):
 
     @allure.step('Delete the created meme')
     def delete_meme(self, obj_id, headers=None):
-        headers = headers if headers else self.headers
+        self.headers = headers if headers else headers_list.auth_headers
+
         self.response = requests.delete(
             f'{self.url}/{obj_id}',
-            headers=headers
+            headers=self.headers
         )
         return self.response
 
