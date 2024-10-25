@@ -62,13 +62,13 @@ put_object_no_info = {"id": "", "text": "test_text_UPD", "url": "test_url_upd@te
                       "UPD"]}
 put_add_any_key_value_pair = {"id": "", "country_upd": "Germany_UPD", "text": "test_text_UPD", "url":
                               "test_url_upd@text.com", "tags": ["TAG1", "TAG2", "UPD"], "info": {"description":
-                               "Test object updated", "policy": "NDA UPD"}}
+                              "Test object updated", "policy": "NDA UPD"}}
 put_invalid_type_text_is_object = {"id": "", "text": {"key": "value"}, "url": "test_url_upd@text.com", "tags":
                                    ["TAG1", "TAG2", "UPD"], "info": {"description": "Test object updated", "policy":
-                                    "NDA UPD"}}
+                                   "NDA UPD"}}
 put_invalid_type_url_is_array = {"id": "", "text": "test_text_UPD", "url": ["test_url_upd@text.com", 2, 3], "tags":
                                  ["TAG1", "TAG2", "UPD"], "info": {"description": "Test object updated", "policy":
-                                  "NDA UPD"}}
+                                 "NDA UPD"}}
 put_invalid_type_tags_is_none = {"id": "", "text": "test_text_UPD", "url": "test_url_upd@text.com", "tags": None,
                                  "info": {"description": "Test object updated", "policy": "NDA UPD"}}
 put_invalid_type_info_is_string = {"id": "", "text": "test_text_UPD", "url": "test_url_upd@text.com", "tags": ["TAG1",
