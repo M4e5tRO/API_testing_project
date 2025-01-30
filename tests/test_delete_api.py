@@ -2,7 +2,6 @@ import pytest
 import allure
 
 from .base_test import BaseTest
-from ..test_data import payloads_list, headers_list
 
 
 @allure.feature('Delete Meme: Positive cases')
@@ -27,14 +26,14 @@ class TestDeleteMemeNegative(BaseTest):
     @allure.story('Delete object without "token"')
     @pytest.mark.regression
     def test_delete_without_token(self, new_obj):
-        self.delete_meme_api.delete_meme(obj_id=new_obj, headers=headers_list.def_headers)
+        self.delete_meme_api.delete_meme(obj_id=new_obj, headers=self.headers.def_headers)
         self.delete_meme_api.check_response_code_is_401()
         self.delete_meme_api.check_401_page()
 
     @allure.story('Delete object with invalid "token"')
     @pytest.mark.regression
     def test_delete_with_invalid_token(self, new_obj):
-        self.delete_meme_api.delete_meme(obj_id=new_obj, headers=headers_list.invalid_token)
+        self.delete_meme_api.delete_meme(obj_id=new_obj, headers=self.headers.invalid_token)
         self.delete_meme_api.check_response_code_is_401()
         self.delete_meme_api.check_401_page()
 
@@ -42,14 +41,14 @@ class TestDeleteMemeNegative(BaseTest):
     @pytest.mark.regression
     def test_delete_twice(self, new_obj):
         self.delete_meme_api.delete_meme(obj_id=new_obj)
-        self.delete_meme_api.delete_meme(obj_id=new_obj)
+        self.delete_meme_api.delete_meme(obj_id=new_obj, headers=self.headers.auth_headers)
         self.delete_meme_api.check_response_code_is_404()
         self.delete_meme_api.check_404_page()
 
     @allure.story('Delete object with an invalid ID')
     @pytest.mark.regression
     def test_delete_with_invalid_id(self, new_obj):
-        self.delete_meme_api.delete_meme(obj_id=payloads_list.invalid_id)
+        self.delete_meme_api.delete_meme(obj_id=self.auth_payloads.invalid_id)
         self.delete_meme_api.check_response_code_is_404()
         self.delete_meme_api.check_404_page()
 

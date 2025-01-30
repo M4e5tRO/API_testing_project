@@ -3,27 +3,28 @@ import allure
 
 from .base_endpoint import BaseEndpoint
 from .json_schemas import AuthScheme
-from ..test_data import payloads_list, headers_list
 
 
 class Authorization(BaseEndpoint):
 
-    @allure.step("User's Authorization")
     def authorize(self, payload=None, headers=None):
-        self.payload = payload if payload else payloads_list.valid_credentials
-        self.headers = headers if headers else headers_list.def_headers
+        with allure.step('Authorize the user'):
+            self.payload = payload if payload else self.auth_payloads.valid_credentials
+            self.headers = headers if headers else self.headers.def_headers
+            self.attach_payload(self.payload)
 
-        self.response = requests.post(
-            self.auth_url,
-            json=self.payload,
-            headers=self.headers
-        )
-        if self.response.status_code == 200:
-            self.json = AuthScheme(**self.response.json())
-            self.token = self.json.token
-            self.user = self.json.user
-
-        return self.response
+            self.response = requests.post(
+                url=self.auth_url,
+                json=self.payload,
+                headers=self.headers
+            )
+            if self.response.status_code == 200:
+                self.json = self.response.json()
+                self.attach_response(self.json)
+                self.model = AuthScheme(**self.json)
+                self.token = self.model.token
+                self.user = self.model.user
+                return self.model
 
     @allure.step("Check token")
     def check_token(self):

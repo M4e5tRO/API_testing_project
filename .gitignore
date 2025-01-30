@@ -1,10 +1,8 @@
 venv
-.idea
-__pycache__
-.DS_Store
-.pytest_cache
 .venv
-credentials.py
-.env
+.idea
+.DS_Store
+__pycache__
+.pytest_cache
 allure-report/
 allure-results/
