@@ -17,6 +17,6 @@ class TestToken(BaseTest):
     @allure.story('Check invalid token')
     @pytest.mark.regression
     def test_invalid_auth_token(self):
-        self.get_auth_token_api.get_auth_token(token="invalid_token")
+        self.get_auth_token_api.get_auth_token(token=self.auth_payloads.invalid_token)
         self.get_auth_token_api.check_response_code_is_404()
         self.get_auth_token_api.check_auth_404_page()
