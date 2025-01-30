@@ -54,7 +54,7 @@ class BaseEndpoint(Helper):
 
     @allure.step('Verify a value of the "updated_by" key in the response')
     def check_value_of_updated_by(self):
-        payload_auth_name=self.auth_payloads.valid_credentials['name']
+        payload_auth_name = self.auth_payloads.valid_credentials['name']
         allure.attach('Payload', f'"name": "{payload_auth_name}"', allure.attachment_type.TEXT)
         resp_updated_by = self.json['updated_by']
         allure.attach('Response', f'"updated_by": "{resp_updated_by}"', allure.attachment_type.TEXT)

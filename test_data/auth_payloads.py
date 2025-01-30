@@ -3,6 +3,7 @@ from faker import Faker
 
 fake = Faker()
 
+
 class AuthPayloads:
 
     valid_credentials = {"name": fake.name()}

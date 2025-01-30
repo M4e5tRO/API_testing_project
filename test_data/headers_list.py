@@ -2,7 +2,6 @@
 
 class Headers:
 
-
     def_headers = {
         "Content-Type": "application/json"
     }

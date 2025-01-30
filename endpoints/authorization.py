@@ -7,7 +7,6 @@ from .json_schemas import AuthScheme
 
 class Authorization(BaseEndpoint):
 
-
     def authorize(self, payload=None, headers=None):
         with allure.step('Authorize the user'):
             self.payload = payload if payload else self.auth_payloads.valid_credentials

@@ -5,7 +5,6 @@ from allure_commons.types import AttachmentType
 
 class Helper:
 
-
     def attach_payload(self, payload):
         """
         Attach a payload to the Allure report in JSON format.
@@ -17,7 +16,6 @@ class Helper:
         """
         payload = json.dumps(payload, indent=4)
         allure.attach(body=payload, name="API Payload", attachment_type=AttachmentType.JSON)
-
 
     def attach_response(self, response):
         """
@@ -31,7 +29,6 @@ class Helper:
         response = json.dumps(response, indent=4)
         allure.attach(body=response, name="API Response", attachment_type=AttachmentType.JSON)
 
-
     def attach_html(self, html_content):
         """
         Attach HTML content to the Allure report.
@@ -42,7 +39,6 @@ class Helper:
             This method does not return a value.
         """
         allure.attach(html_content, name='HTML page', attachment_type=allure.attachment_type.TEXT)
-
 
     def is_subset(self, subset, superset):
         """

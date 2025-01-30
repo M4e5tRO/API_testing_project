@@ -27,7 +27,11 @@ class GetAllMemes(BaseEndpoint):
 
     @allure.step('Find meme ID by updated_by different from logged user')
     def find_meme_id_by_updated_by(self):
-        meme_different_user = next((meme for meme in self.all_memes if meme["updated_by"] != self.auth_payloads.valid_credentials["name"]),None)
-        assert meme_different_user is not None, f"No meme found with updated_by different from {self.auth_payloads.valid_credentials["name"]}"
+        meme_different_user = next(
+            (meme for meme in self.all_memes if meme["updated_by"] != self.auth_payloads.valid_credentials["name"]),
+            None
+        )
+        assert meme_different_user is not None, (f"No meme found with updated_by different from"
+                                                 f" {self.auth_payloads.valid_credentials}")
         self.meme_different_user_id = meme_different_user['id']
         return self.meme_different_user_id

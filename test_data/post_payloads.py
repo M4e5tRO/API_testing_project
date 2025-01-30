@@ -3,6 +3,7 @@ from faker import Faker
 
 fake = Faker()
 
+
 class PostPayloads:
 
     valid_object = {
@@ -47,7 +48,6 @@ class PostPayloads:
         "url": fake.url(),
         "tags": [fake.state_abbr(), fake.state_abbr()]
     }
-
 
     invalid_object_text_is_number = {
         "text": fake.random_int(1, 999),

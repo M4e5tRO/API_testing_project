@@ -15,7 +15,6 @@ from ..endpoints.delete_meme import DeleteMeme
 
 class BaseTest:
 
-
     def setup_method(self):
         self.headers = Headers()
         self.auth_payloads = AuthPayloads()
@@ -29,7 +28,6 @@ class BaseTest:
         self.put_meme_api = PutMeme()
         self.put_payloads = PutPayloads()
         self.delete_meme_api = DeleteMeme()
-
 
     def get_token(self):
 
@@ -45,7 +43,6 @@ class BaseTest:
         self.headers.auth_headers["Authorization"] = f"{token}"
         return self.headers.auth_headers
 
-
     @staticmethod
     def check_token(token):
         if token:
@@ -55,7 +52,6 @@ class BaseTest:
             if response.status_code != 200:
                 return None
         return token
-
 
     def authorize_and_get_token(self):
         headers = self.headers.def_headers
