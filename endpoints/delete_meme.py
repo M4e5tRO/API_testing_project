@@ -11,7 +11,7 @@ class DeleteMeme(BaseEndpoint):
             self.headers = headers if headers else self.headers.auth_headers
 
             self.response = requests.delete(
-                url=f'{self.url}/{obj_id}',
+                url=f'{self.URL}/{obj_id}',
                 headers=self.headers
             )
             return self.response

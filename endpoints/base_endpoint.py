@@ -8,19 +8,19 @@ from ..utils.helper import Helper
 
 class BaseEndpoint(Helper):
 
-    model = None
-    payload = None
-    response = None
-    token = None
-    json = None
-
     def __init__(self):
-        self.base_url = 'http://167.172.172.115:52355'
-        self.auth_url = f'{self.base_url}/authorize'
-        self.url = f'{self.base_url}/meme'
+        super().__init__()
+        self.BASE_URL = 'http://167.172.172.115:52355'
+        self.AUTH_URL = f'{self.BASE_URL}/authorize'
+        self.URL = f'{self.BASE_URL}/meme'
         self.headers = Headers()
         self.auth_payloads = AuthPayloads()
         self.base_payloads = BasePayloads()
+        self.model = None
+        self.payload = None
+        self.response = None
+        self.token = None
+        self.json = None
 
     @allure.step('Check the response status code - 200 OK')
     def check_response_code_is_200(self):

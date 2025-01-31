@@ -14,7 +14,7 @@ class Authorization(BaseEndpoint):
             self.attach_payload(self.payload)
 
             self.response = requests.post(
-                url=self.auth_url,
+                url=self.AUTH_URL,
                 json=self.payload,
                 headers=self.headers
             )
