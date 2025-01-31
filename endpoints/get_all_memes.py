@@ -11,7 +11,7 @@ class GetAllMemes(BaseEndpoint):
             self.headers = headers if headers else self.headers.auth_headers
 
             self.response = requests.get(
-                url=self.url,
+                url=self.URL,
                 headers=self.headers
             )
             if self.response.status_code == 200:

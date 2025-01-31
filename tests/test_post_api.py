@@ -16,7 +16,6 @@ class TestCreateMemePositive(BaseTest):
         self.post_meme_api.check_value_of_updated_by()
         self.delete_meme_api.delete_meme(obj_id=resp.id)
 
-
 @allure.feature('Create Meme: Negative cases')
 class TestCreateMemeNegative(BaseTest):
 

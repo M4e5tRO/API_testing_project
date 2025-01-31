@@ -12,7 +12,7 @@ class GetAuthToken(BaseEndpoint):
             self.headers = headers if headers else self.headers.def_headers
 
             self.response = requests.get(
-                url=f'{self.auth_url}/{self.token}',
+                url=f'{self.AUTH_URL}/{self.token}',
                 headers=self.headers
             )
 

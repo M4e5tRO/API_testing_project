@@ -19,7 +19,7 @@ class PostMeme(BaseEndpoint):
             self.attach_payload(self.payload)
 
             self.response = requests.post(
-                url=self.url,
+                url=self.URL,
                 json=self.payload,
                 headers=self.headers
             )

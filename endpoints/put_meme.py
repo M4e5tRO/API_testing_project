@@ -20,7 +20,7 @@ class PutMeme(BaseEndpoint):
             self.attach_payload(self.payload)
 
             self.response = requests.put(
-                url=f'{self.url}/{obj_id}',
+                url=f'{self.URL}/{obj_id}',
                 json=self.payload,
                 headers=self.headers
             )
